@@ -1,0 +1,156 @@
+import React from "react";
+import { Text, TextInput, TouchableOpacity, View, StyleSheet } from "react-native";
+
+const RegisterScreen = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>¡Regístrate!</Text>
+      <View style={styles.formContainer}>
+        <View style={styles.formRow}>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Primer nombre"
+              style={[styles.input, { borderColor: '#C0C0C0', color: '#6c6e6b' }]}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Segundo nombre"
+              style={[styles.input, { borderColor: '#C0C0C0', color: '#6c6e6b' }]}
+            />
+          </View>
+        </View>
+        <View style={styles.formRow}>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Primer apellido"
+              style={[styles.input, { borderColor: '#C0C0C0', color: '#6c6e6b' }]}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Segundo apellido"
+              style={[styles.input, { borderColor: '#C0C0C0', color: '#6c6e6b' }]}
+            />
+          </View>
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Tipo de documento"
+            style={[styles.input, { borderColor: '#C0C0C0', color: '#6c6e6b' }]}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Fecha de nacimiento"
+            style={[styles.input, { borderColor: '#C0C0C0', color: '#6c6e6b' }]}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Correo"
+            style={[styles.input, { borderColor: '#C0C0C0', color: '#6c6e6b' }]}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Pregunta de seguridad"
+            style={[styles.input, { borderColor: '#C0C0C0', color: '#6c6e6b' }]}
+          />
+        </View>
+        <View style={styles.formRow}>
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Número de documento"
+            style={[styles.input, { borderColor: '#C0C0C0', color: '#6c6e6b' }]}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Número de ficha"
+            style={[styles.input, { borderColor: '#C0C0C0', color: '#6c6e6b' }]}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Contraseña"
+            style={[styles.input, { borderColor: '#C0C0C0', color: '#6c6e6b' }]}
+            secureTextEntry
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Respuesta de seguridad"
+            style={[styles.input, { borderColor: '#C0C0C0', color: '#6c6e6b' }]}
+          />
+        </View>
+      </View>
+      {/* Botones */}
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Registrarse</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  title: {
+    color: '#088a88',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  formContainer: {
+    width: '100%',
+  },
+  formRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  inputContainer: {
+    flex: 1,
+    marginRight: 10,
+    margin: 2,
+  },
+  input: {
+    height: 40,
+    borderColor: '#C0C0C0',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingLeft: 10,
+    marginBottom: 2,
+    
+  },
+  buttonContainer: {
+    flexDirection: 'column',
+    alignItems: 'center', 
+    marginTop: 20,
+  },
+  button: {
+    backgroundColor: '#088a88',
+    padding: 10,
+    borderRadius: 5,
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+});
+
+export default RegisterScreen;
