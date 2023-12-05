@@ -5,9 +5,12 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
+  Pressable,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import DatePicker from "react-native-datepicker";
+import DateTimePicker from "@react-native-community/datetimepicker";  // Modificado aquí
+
 
 const RegisterScreen = () => {
   const [formData, setFormData] = useState({
@@ -26,6 +29,20 @@ const RegisterScreen = () => {
   });
 
   const [selectedTipoDocumento, setSelectedTipoDocumento] = useState("");
+  const [date, setDate] = useState(new Date());
+  const [showPicker, setShowPicker] = useState(false);
+  const toggleDatePicker = () => {
+    setShowPicker(!showPicker);
+  };
+
+  const onChange = (event: any, selectedDate: Date | undefined) => {
+    if (event.type === "set" && selectedDate) {
+      const currentDate = selectedDate;
+      setDate(currentDate);
+    } else {
+      toggleDatePicker();
+    }
+  };
 
   const handleRegister = async () => {
     try {
@@ -75,7 +92,7 @@ const RegisterScreen = () => {
                 { borderColor: "#C0C0C0", color: "#6c6e6b" },
               ]}
             />
-          </View> 
+          </View>
         </View>
         <View style={styles.formRow}>
           <View style={styles.inputContainer}>
@@ -109,36 +126,32 @@ const RegisterScreen = () => {
             <Picker.Item label="CE" value="3" />
           </Picker>
         </View>
-        <View style={styles.inputContainer}>
-          <DatePicker
-            style={{ width: 200 }}
-            date={formData.fechaNacimiento}
-            mode="date"
-            placeholder="Fecha de nacimiento"
-            format="YYYY-MM-DD"
-            confirmBtnText="Confirmar"
-            cancelBtnText="Cancelar"
-            customStyles={{
-              dateIcon: {
-                position: "absolute",
-                left: 0,
-                top: 4,
-                marginLeft: 0,
-              },
-              dateInput: {
-                marginLeft: 36,
-                borderColor: "#C0C0C0",
-              },
 
-              dateText: {
-                color: "#6c6e6b",
-              },
-            }}
-            onDateChange={(date) =>
-              setFormData({ ...formData, fechaNacimiento: date })
-            }
-          />
+        <View style={styles.inputContainer}>
+          <Text style={styles.input}>Fecha de nacimiento</Text>
+
+          {showPicker && (
+            <DateTimePicker
+              mode="date"
+              display="spinner"
+              value={date}
+              onChange={onChange}
+            />
+          )}
+
+          {!showPicker && (
+            <Pressable onPress={toggleDatePicker}>
+              <TextInput
+                style={styles.input}
+                placeholder="Nov 23 2003"
+                value={date.toDateString()} // Usa toDateString u otro método para formatear la fecha
+                placeholderTextColor="#111822744" // Sintaxis correcta para el valor del color
+                editable={false}
+              />
+            </Pressable>
+          )}
         </View>
+
         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Correo"
