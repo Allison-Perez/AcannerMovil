@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Text, TextInput, TouchableOpacity, View, StyleSheet, Picker } from "react-native";
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+} from "react-native";
+import { Picker } from "@react-native-picker/picker";
+import DatePicker from "react-native-datepicker";
 
 const RegisterScreen = () => {
   const [formData, setFormData] = useState({
@@ -53,27 +61,39 @@ const RegisterScreen = () => {
           <View style={styles.inputContainer}>
             <TextInput
               placeholder="Primer nombre"
-              style={[styles.input, { borderColor: "#C0C0C0", color: "#6c6e6b" }]}
+              style={[
+                styles.input,
+                { borderColor: "#C0C0C0", color: "#6c6e6b" },
+              ]}
             />
           </View>
           <View style={styles.inputContainer}>
             <TextInput
               placeholder="Segundo nombre"
-              style={[styles.input, { borderColor: "#C0C0C0", color: "#6c6e6b" }]}
+              style={[
+                styles.input,
+                { borderColor: "#C0C0C0", color: "#6c6e6b" },
+              ]}
             />
-          </View>
+          </View> 
         </View>
         <View style={styles.formRow}>
           <View style={styles.inputContainer}>
             <TextInput
               placeholder="Primer apellido"
-              style={[styles.input, { borderColor: "#C0C0C0", color: "#6c6e6b" }]}
+              style={[
+                styles.input,
+                { borderColor: "#C0C0C0", color: "#6c6e6b" },
+              ]}
             />
           </View>
           <View style={styles.inputContainer}>
             <TextInput
               placeholder="Segundo apellido"
-              style={[styles.input, { borderColor: "#C0C0C0", color: "#6c6e6b" }]}
+              style={[
+                styles.input,
+                { borderColor: "#C0C0C0", color: "#6c6e6b" },
+              ]}
             />
           </View>
         </View>
@@ -90,9 +110,33 @@ const RegisterScreen = () => {
           </Picker>
         </View>
         <View style={styles.inputContainer}>
-          <TextInput
+          <DatePicker
+            style={{ width: 200 }}
+            date={formData.fechaNacimiento}
+            mode="date"
             placeholder="Fecha de nacimiento"
-            style={[styles.input, { borderColor: "#C0C0C0", color: "#6c6e6b" }]}
+            format="YYYY-MM-DD"
+            confirmBtnText="Confirmar"
+            cancelBtnText="Cancelar"
+            customStyles={{
+              dateIcon: {
+                position: "absolute",
+                left: 0,
+                top: 4,
+                marginLeft: 0,
+              },
+              dateInput: {
+                marginLeft: 36,
+                borderColor: "#C0C0C0",
+              },
+
+              dateText: {
+                color: "#6c6e6b",
+              },
+            }}
+            onDateChange={(date) =>
+              setFormData({ ...formData, fechaNacimiento: date })
+            }
           />
         </View>
         <View style={styles.inputContainer}>
@@ -111,13 +155,19 @@ const RegisterScreen = () => {
           <View style={styles.inputContainer}>
             <TextInput
               placeholder="Número de documento"
-              style={[styles.input, { borderColor: "#C0C0C0", color: "#6c6e6b" }]}
+              style={[
+                styles.input,
+                { borderColor: "#C0C0C0", color: "#6c6e6b" },
+              ]}
             />
           </View>
           <View style={styles.inputContainer}>
             <TextInput
               placeholder="Número de ficha"
-              style={[styles.input, { borderColor: "#C0C0C0", color: "#6c6e6b" }]}
+              style={[
+                styles.input,
+                { borderColor: "#C0C0C0", color: "#6c6e6b" },
+              ]}
             />
           </View>
         </View>
