@@ -74,45 +74,29 @@ const RegisterScreen = () => {
     <View style={styles.container}>
       <Text style={styles.title}>¡Regístrate!</Text>
       <View style={styles.formContainer}>
-        <View style={styles.formRow}>
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholder="Primer nombre"
-              style={[
-                styles.input,
-                { borderColor: "#C0C0C0", color: "#6c6e6b" },
-              ]}
-            />
-          </View>
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholder="Segundo nombre"
-              style={[
-                styles.input,
-                { borderColor: "#C0C0C0", color: "#6c6e6b" },
-              ]}
-            />
-          </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Primer nombre"
+            style={styles.input}
+          />
         </View>
-        <View style={styles.formRow}>
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholder="Primer apellido"
-              style={[
-                styles.input,
-                { borderColor: "#C0C0C0", color: "#6c6e6b" },
-              ]}
-            />
-          </View>
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholder="Segundo apellido"
-              style={[
-                styles.input,
-                { borderColor: "#C0C0C0", color: "#6c6e6b" },
-              ]}
-            />
-          </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Segundo nombre"
+            style={styles.input}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Primer apellido"
+            style={styles.input}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Segundo apellido"
+            style={styles.input}
+          />
         </View>
         <View style={styles.inputContainer}>
           <Picker
@@ -126,10 +110,16 @@ const RegisterScreen = () => {
             <Picker.Item label="CE" value="3" />
           </Picker>
         </View>
-
         <View style={styles.inputContainer}>
-          <Text style={styles.input}>Fecha de nacimiento</Text>
-
+          <TextInput
+            placeholder="Número de documento"
+            style={styles.input}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TouchableOpacity onPress={toggleDatePicker} style={styles.dateInput}>
+            <Text>{date.toDateString()}</Text>
+          </TouchableOpacity>
           {showPicker && (
             <DateTimePicker
               mode="date"
@@ -138,63 +128,36 @@ const RegisterScreen = () => {
               onChange={onChange}
             />
           )}
-
-          {!showPicker && (
-            <Pressable onPress={toggleDatePicker}>
-              <TextInput
-                style={styles.input}
-                placeholder="Nov 23 2003"
-                value={date.toDateString()} // Usa toDateString u otro método para formatear la fecha
-                placeholderTextColor="#111822744" // Sintaxis correcta para el valor del color
-                editable={false}
-              />
-            </Pressable>
-          )}
         </View>
-
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Número de ficha"
+            style={styles.input}
+          />
+        </View>
         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Correo"
-            style={[styles.input, { borderColor: "#C0C0C0", color: "#6c6e6b" }]}
+            style={styles.input}
           />
-        </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Pregunta de seguridad"
-            style={[styles.input, { borderColor: "#C0C0C0", color: "#6c6e6b" }]}
-          />
-        </View>
-        <View style={styles.formRow}>
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholder="Número de documento"
-              style={[
-                styles.input,
-                { borderColor: "#C0C0C0", color: "#6c6e6b" },
-              ]}
-            />
-          </View>
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholder="Número de ficha"
-              style={[
-                styles.input,
-                { borderColor: "#C0C0C0", color: "#6c6e6b" },
-              ]}
-            />
-          </View>
         </View>
         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Contraseña"
-            style={[styles.input, { borderColor: "#C0C0C0", color: "#6c6e6b" }]}
+            style={styles.input}
             secureTextEntry
           />
         </View>
         <View style={styles.inputContainer}>
           <TextInput
+            placeholder="Pregunta de seguridad"
+            style={styles.input}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
             placeholder="Respuesta de seguridad"
-            style={[styles.input, { borderColor: "#C0C0C0", color: "#6c6e6b" }]}
+            style={styles.input}
           />
         </View>
       </View>
@@ -208,6 +171,7 @@ const RegisterScreen = () => {
         </TouchableOpacity>
       </View>
     </View>
+
   );
 };
 
@@ -222,20 +186,14 @@ const styles = StyleSheet.create({
     color: "#088a88",
     fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 20,
+    margin: 20,
   },
   formContainer: {
     width: "100%",
-  },
-  formRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 10,
+    marginVertical: 20,
   },
   inputContainer: {
-    flex: 1,
-    marginRight: 10,
-    margin: 2,
+    marginBottom: 15,
   },
   input: {
     height: 40,
@@ -243,12 +201,19 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
-    marginBottom: 2,
+  },
+  dateInput: {
+    height: 40,
+    borderColor: "#C0C0C0",
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingLeft: 10,
+    justifyContent: "center",
   },
   buttonContainer: {
     flexDirection: "column",
     alignItems: "center",
-    marginTop: 20,
+    marginVertical: 20,
   },
   button: {
     backgroundColor: "#088a88",
@@ -256,12 +221,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: "100%",
     alignItems: "center",
-    marginBottom: 10,
+    margin: 5,
   },
   buttonText: {
     color: "white",
     fontWeight: "bold",
   },
 });
+
 
 export default RegisterScreen;
