@@ -6,6 +6,7 @@ import {
   View,
   StyleSheet,
   Pressable,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import DatePicker from "react-native-datepicker";
@@ -116,19 +117,29 @@ const RegisterScreen = () => {
             style={styles.input}
           />
         </View>
+
         <View style={styles.inputContainer}>
-          <TouchableOpacity onPress={toggleDatePicker} style={styles.dateInput}>
-            <Text>{date.toDateString()}</Text>
-          </TouchableOpacity>
-          {showPicker && (
-            <DateTimePicker
-              mode="date"
-              display="spinner"
-              value={date}
-              onChange={onChange}
-            />
-          )}
-        </View>
+  {!showPicker && (
+    <TouchableWithoutFeedback onPress={toggleDatePicker}>
+      <View style={styles.dateInputContainer}>
+      <Text style={styles.dateInputLabel}>Fecha de Nacimiento</Text>
+      <Text style={styles.dateInputValue}>
+        {showPicker ? "Selecciona una fecha" : date.toDateString()}
+      </Text>
+    </View>
+
+    </TouchableWithoutFeedback>
+  )}
+  {showPicker && (
+    <DateTimePicker
+      mode="date"
+      display="spinner"
+      value={date}
+      onChange={onChange}
+    />
+  )}
+</View>
+
         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Número de ficha"
@@ -202,13 +213,20 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft: 10,
   },
-  dateInput: {
+  dateInputContainer: {
     height: 40,
     borderColor: "#C0C0C0",
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
     justifyContent: "center",
+    marginBottom: 10,
+  },
+  dateInputLabel: {
+    color: "#6c6e6b",
+  },
+  dateInputValue: {
+    color: "#6c6e6b",
   },
   buttonContainer: {
     flexDirection: "column",
