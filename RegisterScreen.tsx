@@ -13,18 +13,18 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 
 const RegisterScreen = () => {
   const [formData, setFormData] = useState({
-    primerNombre: "",
-    segundoNombre: "",
-    primerApellido: "",
-    segundoApellido: "",
-    tipoDocumento: "",
-    fechaNacimiento: "",
+    primer_nombre: "",
+    segundo_nombre: "",
+    primer_apellido: "",
+    segundo_apellido: "",
+    tipo_documento: "",
+    fecha_nacimiento: "",
     correo: "",
-    preguntaSeguridad: "",
-    numeroDocumento: "",
-    numeroFicha: "2558104",
-    contrasena: "",
-    respuestaSeguridad: "",
+    pregunta_seguridad: "",
+    id_usuario: "",
+    ficha: "2558104",
+    password: "",
+    respuesta_seguridad: "",
   });
 
   const [selectedTipoDocumento, setSelectedTipoDocumento] = useState("");
@@ -56,9 +56,18 @@ const RegisterScreen = () => {
           "Origin": "http://localhost:19006",  
         },
         body: JSON.stringify({
-          ...formData,
-          tipoDocumento: selectedTipoDocumento,
-          fechaNacimiento: date.toISOString().split("T")[0],
+          primer_nombre: formData.primer_nombre,
+          segundo_nombre: formData.segundo_nombre,
+          primer_apellido: formData.primer_apellido,
+          segundo_apellido: formData.segundo_apellido,
+          tipo_documento: selectedTipoDocumento,
+          fecha_nacimiento: date.toISOString().split("T")[0],
+          correo: formData.correo,
+          pregunta_seguridad: selectedPreguntaSeguridad,
+          id_usuario: formData.id_usuario,
+          ficha: selectedNumeroFicha,
+          password: formData.password,
+          respuesta_seguridad: formData.respuesta_seguridad,
         }),
       });
 
@@ -79,23 +88,51 @@ const RegisterScreen = () => {
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <Text style={styles.title}>¡Regístrate!</Text>
+
         <View style={styles.formContainer}>
           <View style={styles.inputContainer}>
-            <TextInput placeholder="Primer nombre" style={styles.input} />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <TextInput placeholder="Segundo nombre" style={styles.input} />
-          </View>
-
-
-          <View style={styles.inputContainer}>
-            <TextInput placeholder="Primer apellido" style={styles.input} />
+          <TextInput
+              placeholder="Primer nombre"
+              style={styles.input}
+              onChangeText={(text) =>
+                setFormData({ ...formData, primer_nombre: text })
+              }
+              value={formData.primer_nombre}
+            />
           </View>
 
 
           <View style={styles.inputContainer}>
-            <TextInput placeholder="Segundo apellido" style={styles.input} />
+            <TextInput
+              placeholder="Segundo nombre"
+              style={styles.input}
+              onChangeText={(text) =>
+                setFormData({ ...formData, segundo_nombre: text })
+              }
+              value={formData.segundo_nombre}
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Primer apellido"
+              style={styles.input}
+              onChangeText={(text) =>
+                setFormData({ ...formData, primer_apellido: text })
+              }
+              value={formData.primer_apellido}
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Segundo apellido"
+              style={styles.input}
+              onChangeText={(text) =>
+                setFormData({ ...formData, segundo_apellido: text })
+              }
+              value={formData.segundo_apellido}
+            />
           </View>
 
 
@@ -114,7 +151,14 @@ const RegisterScreen = () => {
 
 
           <View style={styles.inputContainer}>
-            <TextInput placeholder="Número de documento" style={styles.input} />
+            <TextInput
+              placeholder="Número de documento"
+              style={styles.input}
+              onChangeText={(text) =>
+                setFormData({ ...formData, id_usuario: text })
+              }
+              value={formData.id_usuario}
+            />
           </View>
 
 
@@ -143,8 +187,10 @@ const RegisterScreen = () => {
           <View style={styles.inputContainer}>
             <Picker
               selectedValue={selectedNumeroFicha}
-              onValueChange={(itemValue) => setSelectedNumeroFicha(itemValue)}
-              style={{ height: 50, width: 200 }}
+              onValueChange={(itemValue) =>
+                setSelectedNumeroFicha(itemValue)
+              }
+              style={{ height: 40, width: 150 }}
             >
               <Picker.Item label="Número de ficha" value="" />
               <Picker.Item label="2558104" value="2558104" />
@@ -153,7 +199,14 @@ const RegisterScreen = () => {
 
 
           <View style={styles.inputContainer}>
-            <TextInput placeholder="Correo" style={styles.input} />
+            <TextInput
+              placeholder="Correo"
+              style={styles.input}
+              onChangeText={(text) =>
+                setFormData({ ...formData, correo: text })
+              }
+              value={formData.correo}
+            />
           </View>
 
 
@@ -162,6 +215,10 @@ const RegisterScreen = () => {
               placeholder="Contraseña"
               style={styles.input}
               secureTextEntry
+              onChangeText={(text) =>
+                setFormData({ ...formData, password: text })
+              }
+              value={formData.password}
             />
           </View>
 
@@ -175,12 +232,24 @@ const RegisterScreen = () => {
               style={styles.input}
             >
               <Picker.Item label="Pregunta de seguridad" value="" />
-              <Picker.Item label="Nombre de tu primera mascota" value="1" />
-              <Picker.Item label="Ciudad donde naciste" value="2" />
-              <Picker.Item label="Nombre de tu mejor amigo" value="3" />
+              <Picker.Item
+                label="Nombre de tu primera mascota"
+                value="1"
+              />
+              <Picker.Item
+                label="Ciudad donde naciste"
+                value="2"
+              />
+              <Picker.Item
+                label="Nombre de tu mejor amigo"
+                value="3"
+              />
               <Picker.Item label="Cantante favorito" value="4" />
               <Picker.Item label="Comida favorita" value="5" />
-              <Picker.Item label="Nombre de tu profesor favorito" value="6" />
+              <Picker.Item
+                label="Nombre de tu profesor favorito"
+                value="6"
+              />
             </Picker>
           </View>
 
@@ -189,6 +258,10 @@ const RegisterScreen = () => {
             <TextInput
               placeholder="Respuesta de seguridad"
               style={styles.input}
+              onChangeText={(text) =>
+                setFormData({ ...formData, respuesta_seguridad: text })
+              }
+              value={formData.respuesta_seguridad}
             />
           </View>
 

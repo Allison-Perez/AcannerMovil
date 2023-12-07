@@ -18,26 +18,80 @@ const dbConfig = {
   database: "acanner",
 };
 
+// app.post("/registro", async (req, res) => {
+//   try {
+//     const connection = await mysql.createConnection(dbConfig);
+
+//     const {
+//       primer_nombre,
+//       segundo_nombre,
+//       primer_apellido,
+//       segundo_apellido,
+//       tipo_documento,
+//       fecha_nacimiento,
+//       correo,
+//       pregunta_seguridad,
+//       id_usuario,
+//       ficha,
+//       password,
+//       respuesta_seguridad,
+//     } = req.body;
+
+//     const passwordEncriptado = await bcrypt.hash(password, 10);
+
+//     const sql = `INSERT INTO usuario 
+//       (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, fecha_nacimiento, 
+//       correo, pregunta_seguridad, id_usuario, ficha, password, respuesta_seguridad, rol) 
+//       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+//     await connection.execute(sql, [
+//       primer_nombre,
+//       segundo_nombre,
+//       primer_apellido,
+//       segundo_apellido,
+//       tipo_documento,
+//       fecha_nacimiento,
+//       correo,
+//       pregunta_seguridad,
+//       id_usuario,
+//       ficha,
+//       password,
+//       respuesta_seguridad,
+//       2,
+//     ]);
+
+//     connection.end();
+//     res.status(201).json({ message: "Usuario creado exitosamente" });
+//   } catch (error) {
+//     console.error("Error al insertar el registro:", error);
+//     res.status(500).json({ error: "Error al insertar el registro" });
+//   }
+// });
+
+// app.listen(port, () => {
+//   console.log(`Servidor en ejecución en http://localhost:${port}`);
+// });
+
 app.post("/registro", async (req, res) => {
   try {
     const connection = await mysql.createConnection(dbConfig);
 
     const {
-      primerNombre,
-      segundoNombre,
-      primerApellido,
-      segundoApellido,
-      tipoDocumento,
-      fechaNacimiento,
+      primer_nombre,
+      segundo_nombre,
+      primer_apellido,
+      segundo_apellido,
+      tipo_documento,
+      fecha_nacimiento,
       correo,
-      preguntaSeguridad,
-      numeroDocumento,
-      numeroFicha,
-      contrasena,
-      respuestaSeguridad,
+      pregunta_seguridad,
+      id_usuario,
+      ficha,
+      password,
+      respuesta_seguridad,
     } = req.body;
 
-    const passwordEncriptado = await bcrypt.hash(contrasena, 10);
+    const passwordEncriptado = await bcrypt.hash(password, 10);
 
     const sql = `INSERT INTO usuario 
       (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, fecha_nacimiento, 
@@ -45,18 +99,18 @@ app.post("/registro", async (req, res) => {
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
     await connection.execute(sql, [
-      primerNombre,
-      segundoNombre,
-      primerApellido,
-      segundoApellido,
-      tipoDocumento,
-      fechaNacimiento,
+      primer_nombre,
+      segundo_nombre,
+      primer_apellido,
+      segundo_apellido,
+      tipo_documento,
+      fecha_nacimiento,
       correo,
-      preguntaSeguridad,
-      numeroDocumento,
-      numeroFicha,
+      pregunta_seguridad,
+      id_usuario,
+      ficha,
       passwordEncriptado,
-      respuestaSeguridad,
+      respuesta_seguridad,
       2,
     ]);
 
