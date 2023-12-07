@@ -32,6 +32,8 @@ const RegisterScreen = () => {
   const [selectedPreguntaSeguridad, setSelectedPreguntaSeguridad] =useState("");
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
+
+
   const toggleDatePicker = () => {
     setShowPicker(!showPicker);
   };
@@ -51,6 +53,7 @@ const RegisterScreen = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Origin": "http://localhost:19006",  
         },
         body: JSON.stringify({
           ...formData,
@@ -63,9 +66,12 @@ const RegisterScreen = () => {
         console.log("Usuario registrado exitosamente");
       } else {
         console.error("Error al registrar el usuario");
+      const errorData = await response.json();
+      console.error("Detalles del error:", errorData);
       }
     } catch (error) {
       console.error("Error de red al registrar el usuario", error);
+      
     }
   };
 
@@ -200,7 +206,7 @@ const RegisterScreen = () => {
 
 
       </View>
-      
+
     </ScrollView>
   );
 };
