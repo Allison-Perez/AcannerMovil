@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   TextInput,
   TouchableOpacity,
   View,
   StyleSheet,
-  Pressable,
+  ScrollView,
   TouchableWithoutFeedback,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import DatePicker from "react-native-datepicker";
-import DateTimePicker from "@react-native-community/datetimepicker";  // Modificado aquí
+import DateTimePicker from "@react-native-community/datetimepicker";  
+import * as Font from 'expo-font';
+
+
 
 
 const RegisterScreen = () => {
@@ -72,6 +75,7 @@ const RegisterScreen = () => {
   };
 
   return (
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
     <View style={styles.container}>
       <Text style={styles.title}>¡Regístrate!</Text>
       <View style={styles.formContainer}>
@@ -182,11 +186,19 @@ const RegisterScreen = () => {
         </TouchableOpacity>
       </View>
     </View>
+    </ScrollView>
 
   );
 };
 
 const styles = StyleSheet.create({
+
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "center",
+    padding: 20,
+  },
+
   container: {
     flex: 1,
     justifyContent: "center",
@@ -194,6 +206,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   title: {
+    fontFamily: 'sans-serif', 
     color: "#088a88",
     fontSize: 24,
     fontWeight: "bold",
@@ -226,16 +239,16 @@ const styles = StyleSheet.create({
     color: "#6c6e6b",
   },
   dateInputValue: {
-    color: "#6c6e6b",
+    color: "#C0C0C0",
   },
   buttonContainer: {
     flexDirection: "column",
     alignItems: "center",
-    marginVertical: 20,
+    marginVertical: 12,
   },
   button: {
     backgroundColor: "#088a88",
-    padding: 10,
+    padding: 15,
     borderRadius: 5,
     width: "100%",
     alignItems: "center",
