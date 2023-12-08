@@ -8,11 +8,12 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 
-app.use(cors({
-  origin: 'http://localhost:19006',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-}));
+  app.use(cors({
+    origin: 'http://localhost:19006',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  }));
+
 app.use(bodyParser.json());
 
 const dbConfig = {
