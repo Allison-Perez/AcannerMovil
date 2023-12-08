@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableWithoutFeedback,
+  Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -72,6 +73,9 @@ const RegisterScreen = () => {
       });
 
       if (response.ok) {
+        Alert.alert("Registro exitoso", "Usuario registrado exitosamente", [
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ]);
         console.log("Usuario registrado exitosamente");
       } else {
         console.error("Error al registrar el usuario");
