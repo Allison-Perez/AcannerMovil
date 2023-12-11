@@ -1,38 +1,51 @@
 import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View, Image, StyleSheet } from "react-native";
-import ApiService from './ApiService'; // Asegúrate de ajustar la ruta según tu estructura de carpetas
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import IndexAdmin from './IndexAdmin';
+
+
 
 const LoginForm = () => {
   const [correo, setCorreo] = useState("");
   const [password, setPassword] = useState("");
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<any>>();
 
-  const handleLogin = async () => {
-    try {
-      const response = await ApiService.login({ correo, password });
 
-      if (response.status === 200) {
-       
-        const email = correo;
-        console.log(email);
-        alert("Inicio de sesión exitoso");
-        
-        const userRole = response.rol;
+  // ...
 
+const handleLogin = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ correo, password } as Record<string, any>),
+    });
+
+    if (response.status === 200) {
+      const responseData = await response.json();
+      const userRole = responseData.rol;
+
+      if (userRole === 2) {
+        // Redirigir al componente IndexAdmin
+        navigation.navigate('IndexAdmin');
 
       } else {
-        // Autenticación fallida
-        alert("Correo o contraseña incorrectos");
+        // Redirigir a otro componente según el rol si es necesario
       }
-    } catch (error) {
-      console.error("Error en el inicio de sesión:", error);
-      alert("Error en el inicio de sesión");
-    }
-  };
 
+      // También puedes hacer algo más aquí, como mostrar una alerta o navegar a la pantalla principal
+    } else {
+      alert("Correo o contraseña incorrectos");
+    }
+  } catch (error) {
+    console.error("Error en el inicio de sesión:", error);
+    alert("Error en el inicio de sesión");
+  }
+};
+  
   return (
     <View style={styles.container}>
       <Image source={require('./assets/logoVerde.png')} style={styles.logo} />
@@ -59,17 +72,7 @@ const LoginForm = () => {
   );
 };
 
-const AppNavigator = createStackNavigator();
 
-const App = () => {
-  return (
-    <NavigationContainer>
-      <AppNavigator.Navigator>
-        <AppNavigator.Screen name="Login" component={LoginForm} />
-      </AppNavigator.Navigator>
-    </NavigationContainer>
-  );
-};
 
 const styles = StyleSheet.create({
   container: {
@@ -113,4 +116,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default LoginForm;

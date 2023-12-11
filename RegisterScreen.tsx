@@ -73,16 +73,18 @@ const RegisterScreen = () => {
       });
 
       if (response.ok) {
-        Alert.alert("Registro exitoso", "Usuario registrado exitosamente", [
+        alert("Usuario registrado correctamente"); [
           { text: "OK", onPress: () => console.log("OK Pressed") },
-        ]);
+        ];
         console.log("Usuario registrado exitosamente");
       } else {
         console.error("Error al registrar el usuario");
+        alert("Error al registrar el usuario");
       const errorData = await response.json();
       console.error("Detalles del error:", errorData);
       }
     } catch (error) {
+      alert("Lo sentimos no pudimos realizar el registro. Intentalo en otra ocasión");
       console.error("Error de red al registrar el usuario", error);
       
     }

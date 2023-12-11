@@ -1,22 +1,24 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image, ImageSourcePropType } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import LoginForm from './LoginForm'
+import RegisterScreen from './RegisterScreen'
 
 const IndexScreen = () => {
   const navigation = useNavigation();
 
   const navigateToLogin = () => {
-    navigation.navigate("Login");
+    navigation.navigate('Login' as never);
   };
 
   const navigateToRegister = () => {
-    navigation.navigate("Register");
+    navigation.navigate('Register' as never);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Image source={require("./assets/logoVerde.png")} style={styles.logo} />
+        <Image source={require("./assets/logoVerde.png") as ImageSourcePropType} style={styles.logo} />
         <Text style={styles.title}>ACANNER</Text>
         <Text style={styles.paragraph}>
           Bienvenido a Acanner, tu compañero en la planificación académica
@@ -36,7 +38,6 @@ const IndexScreen = () => {
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -48,9 +49,9 @@ const styles = StyleSheet.create({
     width: 130,
     height: 130,
   },
-  title:{
+  title: {
     fontSize: 30,
-    textAlign: 'center', 
+    textAlign: 'center',
     marginTop: 20,
     color: '#088a88',
   },
@@ -63,11 +64,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    
-  },
-  contentText: {
-    fontSize: 20,
-    color: "black",
   },
   footer: {
     flexDirection: 'column',
@@ -82,7 +78,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     marginBottom: 10,
-    width: "90%", 
+    width: "90%",
   },
   registerButton: {
     backgroundColor: "white",
@@ -90,7 +86,7 @@ const styles = StyleSheet.create({
     borderColor: "#088a88",
     padding: 15,
     borderRadius: 5,
-    width: "90%", 
+    width: "90%",
   },
   buttonText: {
     color: "white",
