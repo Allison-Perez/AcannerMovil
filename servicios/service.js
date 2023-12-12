@@ -221,6 +221,7 @@ app.post('/api/verificarRespuesta', async (req, res) => {
 // MOSTRAR INFORMACIÓN EN EL PERFIL
 
 app.get('/api/obtener-usuario', async (req, res) => {
+  console.log('Solicitud de obtener usuario recibida');
   const correo = req.query.correo;
   console.log(correo);
   const sql = `SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, ficha, correo, password FROM usuario WHERE correo = ?`;

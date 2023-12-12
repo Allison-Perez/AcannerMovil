@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import IndexAdmin from './IndexAdmin';
+import { guardarCorreoUsuario } from './AuthHelper'; 
 
 
 
@@ -14,37 +14,49 @@ const LoginForm = () => {
 
   // ...
 
-const handleLogin = async () => {
-  try {
-    const response = await fetch('http://localhost:3000/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ correo, password } as Record<string, any>),
-    });
-
-    if (response.status === 200) {
-      const responseData = await response.json();
-      const userRole = responseData.rol;
-
-      if (userRole === 2) {
-        // Redirigir al componente IndexAdmin
-        navigation.navigate('IndexAdmin');
-
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ correo, password } as Record<string, any>),
+      });
+  
+      if (response.status === 200) {
+        const responseData = await response.json();
+        const userRole = responseData.rol;
+        guardarCorreoUsuario(correo);
+  
+        switch (userRole) {
+          case 1:
+            // Redirigir al componente IndexInstructor
+            navigation.navigate('IndexInstructor');
+            break;
+          case 2:
+            // Redirigir al componente IndexAprendiz
+            navigation.navigate('IndexAprendiz');
+            break;
+          case 3:
+            // Redirigir al componente IndexAdmin
+            navigation.navigate('IndexAdmin');
+            break;
+          default:
+            // Puedes manejar otros roles o casos aquí si es necesario
+            break;
+        }
+  
+        // También puedes hacer algo más aquí, como mostrar una alerta o navegar a la pantalla principal
       } else {
-        // Redirigir a otro componente según el rol si es necesario
+        alert("Correo o contraseña incorrectos");
       }
-
-      // También puedes hacer algo más aquí, como mostrar una alerta o navegar a la pantalla principal
-    } else {
-      alert("Correo o contraseña incorrectos");
+    } catch (error) {
+      console.error("Error en el inicio de sesión:", error);
+      alert("Error en el inicio de sesión");
     }
-  } catch (error) {
-    console.error("Error en el inicio de sesión:", error);
-    alert("Error en el inicio de sesión");
-  }
-};
+  };
+  
   
   return (
     <View style={styles.container}>

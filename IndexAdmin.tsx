@@ -1,11 +1,12 @@
 import React from 'react';
 import { Text, TextInput, TouchableOpacity, View, Image, StyleSheet } from 'react-native';
-import BarraNav from './BarraNav'; 
+import NavAdmin from './NavAdmin'; 
 
 const IndexAdmin = () => {
   return (
     <View style={styles.container}>
-       <BarraNav />
+       <NavAdmin />
+       <Text style={styles.title}>Bienvenido Administrador</Text>
       <Image
         source={require('./assets/imagenAdmin.png')}
         style={styles.image}
@@ -29,6 +30,14 @@ const styles = StyleSheet.create({
     height: 200,
     marginBottom: 20,
   },
+
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#088a88',
+    marginBottom: 10,
+  },
+  
   welcomeText: {
     textAlign: 'center',
     fontSize: 16,

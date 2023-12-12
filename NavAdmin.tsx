@@ -5,16 +5,16 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 type RootStackParamList = {
-    IndexAdmin: undefined;
-  Perfil: undefined;
-  RegistroUsuarios: undefined;
+  IndexAdmin: undefined;
+  PerfilAdmin: undefined;
+  RegistroAdmin: undefined;
   EditarUsuarios: undefined;
   Login: undefined;
 };
 
 type NavigationProps = StackNavigationProp<RootStackParamList>;
 
-const BarraNav: React.FC = () => {
+const NavAdmin: React.FC = () => {
   const navigation = useNavigation<NavigationProps>();
 
   const navigateTo = (screenName: keyof RootStackParamList) => {
@@ -36,10 +36,10 @@ const BarraNav: React.FC = () => {
       <TouchableOpacity onPress={() => navigateTo('IndexAdmin')}>
         <Icon name="home" size={20} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigateTo('Perfil')}>
+      <TouchableOpacity onPress={() => navigateTo('PerfilAdmin')}>
         <Icon name="user" size={20} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigateTo('RegistroUsuarios')}>
+      <TouchableOpacity onPress={() => navigateTo('RegistroAdmin')}>
         <Icon name="user-plus" size={20} color="white" />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigateTo('EditarUsuarios')}>
@@ -58,11 +58,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         padding: 10,
+        paddingHorizontal: 20,
         backgroundColor: '#088a88',
         position: 'absolute',
         bottom: 0,
         width: '100%',
+        zIndex: 1,
       },
 });
 
-export default BarraNav;
+export default NavAdmin;
