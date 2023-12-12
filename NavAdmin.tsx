@@ -8,7 +8,7 @@ type RootStackParamList = {
   IndexAdmin: undefined;
   PerfilAdmin: undefined;
   RegistroAdmin: undefined;
-  EditarUsuarios: undefined;
+  ListarUsuarios: undefined;
   Login: undefined;
 };
 
@@ -42,7 +42,7 @@ const NavAdmin: React.FC = () => {
       <TouchableOpacity onPress={() => navigateTo('RegistroAdmin')}>
         <Icon name="user-plus" size={20} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigateTo('EditarUsuarios')}>
+      <TouchableOpacity onPress={() => navigateTo('ListarUsuarios')}>
         <Icon name="edit" size={20} color="white" />
       </TouchableOpacity>
       <TouchableOpacity onPress={handleLogout}>

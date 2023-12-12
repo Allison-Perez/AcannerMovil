@@ -7,8 +7,11 @@ import RegisterScreen from './RegisterScreen';
 import IndexAdmin from './IndexAdmin';
 import IndexAprendiz from './IndexAprendiz';
 import IndexInstructor from './IndexInstructor';
-import PerfilAdmin from './PerfilAdmin ';
+import PerfilAdmin from './PerfilAdmin';
 import RegistroAdmin from './RegistroAdmin';
+import PasswordAdmin from './PasswordAdmin';
+import EditarAdmin from './EditarAdmin';
+import ListarUsuarios from './ListarUsuarios';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +27,9 @@ const App = () => {
         <Stack.Screen name="IndexInstructor" component={IndexInstructor} />
         <Stack.Screen name="PerfilAdmin" component={PerfilAdmin} />
         <Stack.Screen name="RegistroAdmin" component={RegistroAdmin} />
+        <Stack.Screen name="PasswordAdmin" component={PasswordAdmin} />
+        <Stack.Screen name="EditarAdmin" component={EditarAdmin} />
+        <Stack.Screen name="ListarUsuarios" component={ListarUsuarios} />
       </Stack.Navigator>
     </NavigationContainer>
   );

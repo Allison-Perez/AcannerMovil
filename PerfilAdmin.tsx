@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity  } from 'react-native';
 import axios from 'axios';
 import { obtenerCorreoUsuario } from './AuthHelper'; 
-import NavAdmin from './NavAdmin'; 
+import NavAdmin from './NavAdmin';
+import { useNavigation } from '@react-navigation/native'
 
 const PerfilAdmin = () => {
   const [usuario, setUsuario] = useState<any>(null);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const obtenerInformacionUsuario = async () => {
@@ -37,7 +39,16 @@ const PerfilAdmin = () => {
   }, []);
 
   console.log('Renderizando componente con usuario:', usuario);
+  const handleEditar = () => {
+    navigation.navigate('EditarAdmin' as never, { usuario } as never);
+  };
+  
+  
+  
 
+  const handleCambiarContraseña = () => {
+    navigation.navigate('EditarAdmin' as never); // Asegúrate de tener una pantalla con el nombre 'PasswordAdmin'
+  };
   return (
     <View style={styles.container}>
       <NavAdmin />
@@ -68,6 +79,13 @@ const PerfilAdmin = () => {
           </>
         )}
       </View>
+      {/* Botones */}
+      <TouchableOpacity style={styles.button} onPress={handleEditar}>
+        <Text style={styles.buttonText}>Editar</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleCambiarContraseña}>
+        <Text style={styles.buttonText}>Cambiar Contraseña</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -105,6 +123,19 @@ const styles = StyleSheet.create({
   detail: {
     fontSize: 16,
     marginBottom: 15,
+  },
+  button: {
+    backgroundColor: '#088a88',
+    padding: 15,
+    borderRadius: 5,
+    width: '30%',
+    alignItems: 'center',
+    marginBottom: 35,
+  },
+  buttonText: {
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 
