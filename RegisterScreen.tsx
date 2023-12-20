@@ -7,12 +7,13 @@ import {
   StyleSheet,
   ScrollView,
   TouchableWithoutFeedback,
-  Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { useNavigation } from "@react-navigation/native"; 
 
 const RegisterScreen = () => {
+  const navigation = useNavigation();
   const [formData, setFormData] = useState({
     primer_nombre: "",
     segundo_nombre: "",
@@ -275,12 +276,14 @@ const RegisterScreen = () => {
         </View>
         {/* Botones */}
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={handleRegister}>
+        <TouchableOpacity style={styles.button} onPress={handleRegister}>
             <Text style={styles.buttonText}>Registrarse</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login' as never)}>
+              <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
+          
         </View>
 
 
@@ -305,7 +308,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6FCFF",
   },
   title: {
-    fontFamily: "sans-serif",
+    fontFamily: 'Monserrat',
     color: "#088a88",
     fontSize: 24,
     fontWeight: "bold",
@@ -318,6 +321,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginBottom: 15,
     backgroundColor: "white",
+    fontFamily: 'Monserrat',
   },
   input: {
     height: 40,
@@ -325,7 +329,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
-    color: "#088a88", 
+    color: "#088a88",
+    fontFamily: 'Monserrat',
   },
   dateInputContainer: {
     height: 40,
@@ -335,17 +340,21 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     justifyContent: "center",
     marginBottom: 10,
+    fontFamily: 'Monserrat',
   },
   dateInputLabel: {
     color: "#088a88",
+    fontFamily: 'Monserrat',
   },
   dateInputValue: {
     color: "#C0C0C0",
+    fontFamily: 'Monserrat',
   },
   buttonContainer: {
     flexDirection: "column",
     alignItems: "center",
     marginVertical: 12,
+    fontFamily: 'Monserrat',
   },
   button: {
     backgroundColor: "#088a88",
@@ -358,15 +367,17 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontWeight: "bold",
+    
   },
   pickerStyle: {
     height: 40,
-    width: "auto", // Esto permite que el ancho se ajuste automáticamente al contenido
+    width: "auto",
     borderColor: "#C0C0C0",
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
     color: "#088a88",
+    fontFamily: 'Monserrat',
   },
 
 });

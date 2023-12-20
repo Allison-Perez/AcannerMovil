@@ -4,10 +4,7 @@ import axios from 'axios';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import NavAdmin from './NavAdmin';
 
-// Importa el tipo RouteProp para definir el tipo de la ruta
 type EditarAdminRouteProp = RouteProp<Record<string, EditarAdminParams>, 'EditarAdmin'>;
-
-// Define los parámetros esperados en la ruta 'EditarAdmin'
 type EditarAdminParams = {
   usuario: {
     primer_nombre: string;
@@ -15,14 +12,12 @@ type EditarAdminParams = {
     primer_apellido: string;
     segundo_apellido: string;
     correo: string;
-    // Añade otros campos según sea necesario
   };
 };
 
 const EditarAdmin = () => {
-  const route = useRoute<EditarAdminRouteProp>(); // Usa el tipo de ruta personalizado
+  const route = useRoute<EditarAdminRouteProp>();
   const { usuario } = route.params;
-
   const navigation = useNavigation();
 
   const [primerNombre, setPrimerNombre] = useState(usuario.primer_nombre);
@@ -40,8 +35,8 @@ const EditarAdmin = () => {
         segundoApellido,
       };
 
-      // Realiza la solicitud de actualización
       await axios.post(apiUrl, updatedUserData, { params: { correo: usuario.correo } });
+      
       setTimeout(() => {
         navigation.navigate('PerfilAdmin' as never);
       }, 3000);
@@ -100,6 +95,7 @@ const styles = StyleSheet.create({
     color: '#088a88',
     marginBottom: 20,
     marginTop: 20,
+    fontFamily: 'Montserrat',
   },
   input: {
     height: 40,
@@ -115,6 +111,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: '100%',
     alignItems: 'center',
+    marginTop: 20,
   },
   buttonText: {
     color: 'white',

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, View, Image, StyleSheet } from 'react-native';
-import NavAdmin from './NavAdmin'; 
+import NavAdmin from './NavAdmin';
 
 const IndexAdmin = () => {
   return (
     <View style={styles.container}>
-       <NavAdmin />
-       <Text style={styles.title}>Bienvenido Administrador</Text>
+      <NavAdmin />
+      <Text style={styles.title}>Bienvenido Administrador</Text>
       <Image
         source={require('./assets/imagenAdmin.png')}
         style={styles.image}
@@ -30,18 +30,18 @@ const styles = StyleSheet.create({
     height: 200,
     marginBottom: 20,
   },
-
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#088a88',
     marginBottom: 10,
+    fontFamily: 'Montserrat',
   },
-  
   welcomeText: {
     textAlign: 'center',
     fontSize: 16,
     color: '#333',
+    lineHeight: 24, // Ajusta según sea necesario
   },
 });
 

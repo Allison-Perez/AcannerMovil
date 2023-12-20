@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity  } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { obtenerCorreoUsuario } from './AuthHelper'; 
 import NavAdmin from './NavAdmin';
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native';
 
 const PerfilAdmin = () => {
   const [usuario, setUsuario] = useState<any>(null);
@@ -13,15 +13,10 @@ const PerfilAdmin = () => {
     const obtenerInformacionUsuario = async () => {
       try {
         const correo = await obtenerCorreoUsuario();
-        console.log('Correo obtenido:', correo);
-
         if (correo) {
           const apiUrl = 'http://localhost:3000/api/obtener-usuario';
-          console.log('Haciendo solicitud a la API:', apiUrl);
-
           axios.get(apiUrl, { params: { correo } })
             .then(response => {
-              console.log('Respuesta de la API:', response.data);
               setUsuario(response.data);
             })
             .catch(error => {
@@ -33,26 +28,21 @@ const PerfilAdmin = () => {
       }
     };
 
-    console.log('Antes de llamar a obtenerInformacionUsuario');
     obtenerInformacionUsuario();
-    console.log('Después de llamar a obtenerInformacionUsuario');
   }, []);
 
-  console.log('Renderizando componente con usuario:', usuario);
   const handleEditar = () => {
     navigation.navigate('EditarAdmin' as never, { usuario } as never);
   };
-  
-  
-  
 
   const handleCambiarContraseña = () => {
-    navigation.navigate('PasswordAdmin' as never); // Asegúrate de tener una pantalla con el nombre 'PasswordAdmin'
+    navigation.navigate('PasswordAdmin' as never); 
   };
+
   return (
     <View style={styles.container}>
       <NavAdmin />
-      <Text style={styles.title}>Perfil</Text>
+      <Text style={styles.title}>Perfil Administrador</Text>
       <View style={styles.imageContainer}>
         {usuario && <Image source={require('./assets/perfil.jpg')} style={styles.image} />}
       </View>
@@ -80,10 +70,10 @@ const PerfilAdmin = () => {
         )}
       </View>
       {/* Botones */}
-      <TouchableOpacity style={styles.button} onPress={handleEditar}>
+      <TouchableOpacity style={styles.buttonEditar} onPress={handleEditar}>
         <Text style={styles.buttonText}>Editar</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={handleCambiarContraseña}>
+      <TouchableOpacity style={styles.buttonCambiar} onPress={handleCambiarContraseña}>
         <Text style={styles.buttonText}>Cambiar Contraseña</Text>
       </TouchableOpacity>
     </View>
@@ -103,9 +93,10 @@ const styles = StyleSheet.create({
     color: '#088a88',
     marginBottom: 20,
     marginTop: 20,
+    fontFamily: 'Montserrat',
   },
   imageContainer: {
-    marginBottom: 20,
+    marginBottom: 30,
   },
   image: {
     width: 200,
@@ -116,19 +107,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   label: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: 8,
+    color: '#333',
   },
   detail: {
     fontSize: 16,
+    marginBottom: 12,
+    color: '#555',
+  },
+  buttonEditar: {
+    backgroundColor: '#088a88',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    width: '50%',
+    alignItems: 'center',
     marginBottom: 15,
   },
-  button: {
+  buttonCambiar: {
     backgroundColor: '#088a88',
-    padding: 15,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
     borderRadius: 5,
-    width: '30%',
+    width: '50%',
     alignItems: 'center',
     marginBottom: 35,
   },

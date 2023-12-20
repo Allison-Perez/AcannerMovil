@@ -1,3 +1,4 @@
+// App.tsx
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -12,6 +13,7 @@ import RegistroAdmin from './RegistroAdmin';
 import PasswordAdmin from './PasswordAdmin';
 import EditarAdmin from './EditarAdmin';
 import ListarUsuarios from './ListarUsuarios';
+import ActualizarAdmin from './ActualizarAdmin';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +32,7 @@ const App = () => {
         <Stack.Screen name="PasswordAdmin" component={PasswordAdmin} />
         <Stack.Screen name="EditarAdmin" component={EditarAdmin} />
         <Stack.Screen name="ListarUsuarios" component={ListarUsuarios} />
+        <Stack.Screen name="ActualizarAdmin" component={ActualizarAdmin} />
       </Stack.Navigator>
     </NavigationContainer>
   );

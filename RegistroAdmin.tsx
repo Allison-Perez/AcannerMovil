@@ -7,13 +7,14 @@ import {
   StyleSheet,
   ScrollView,
   TouchableWithoutFeedback,
-  Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import NavAdmin from './NavAdmin'; 
+import { useNavigation } from "@react-navigation/native"; 
+import NavAdmin from './NavAdmin';
 
-const RegistroAdmin = () => {
+const RegisterScreen = () => {
+  const navigation = useNavigation();
   const [formData, setFormData] = useState({
     primer_nombre: "",
     segundo_nombre: "",
@@ -31,10 +32,9 @@ const RegistroAdmin = () => {
 
   const [selectedTipoDocumento, setSelectedTipoDocumento] = useState("");
   const [selectedNumeroFicha, setSelectedNumeroFicha] = useState("2558104");
-  const [selectedPreguntaSeguridad, setSelectedPreguntaSeguridad] =useState("");
+  const [selectedPreguntaSeguridad, setSelectedPreguntaSeguridad] = useState("");
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
-
 
   const toggleDatePicker = () => {
     setShowPicker(!showPicker);
@@ -74,32 +74,29 @@ const RegistroAdmin = () => {
       });
 
       if (response.ok) {
-        alert("Usuario registrado correctamente"); [
-          { text: "OK", onPress: () => console.log("OK Pressed") },
-        ];
+        alert("Usuario registrado correctamente");
         console.log("Usuario registrado exitosamente");
       } else {
         console.error("Error al registrar el usuario");
         alert("Error al registrar el usuario");
-      const errorData = await response.json();
-      console.error("Detalles del error:", errorData);
+        const errorData = await response.json();
+        console.error("Detalles del error:", errorData);
       }
     } catch (error) {
-      alert("Lo sentimos no pudimos realizar el registro. Intentalo en otra ocasión");
+      alert("Lo sentimos no pudimos realizar el registro. Inténtalo en otra ocasión");
       console.error("Error de red al registrar el usuario", error);
-      
     }
   };
 
   return (
-    <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.scrollContent}>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <NavAdmin />
-        <Text style={styles.title}>¡Bienvenido Administrador a registro!</Text>
+        <Text style={styles.title}>Bienvenido al Sistema de Registro para Administradores</Text>
 
         <View style={styles.formContainer}>
           <View style={styles.inputContainer}>
-          <TextInput
+            <TextInput
               placeholder="Primer nombre"
               style={styles.input}
               onChangeText={(text) =>
@@ -108,7 +105,6 @@ const RegistroAdmin = () => {
               value={formData.primer_nombre}
             />
           </View>
-
 
           <View style={styles.inputContainer}>
             <TextInput
@@ -143,7 +139,6 @@ const RegistroAdmin = () => {
             />
           </View>
 
-
           <View style={styles.inputContainer}>
             <Picker
               selectedValue={selectedTipoDocumento}
@@ -157,7 +152,6 @@ const RegistroAdmin = () => {
             </Picker>
           </View>
 
-
           <View style={styles.inputContainer}>
             <TextInput
               placeholder="Número de documento"
@@ -168,7 +162,6 @@ const RegistroAdmin = () => {
               value={formData.id_usuario}
             />
           </View>
-
 
           <View style={styles.inputContainer}>
             {!showPicker && (
@@ -191,20 +184,18 @@ const RegistroAdmin = () => {
             )}
           </View>
 
-
           <View style={styles.inputContainer}>
             <Picker
               selectedValue={selectedNumeroFicha}
               onValueChange={(itemValue) =>
                 setSelectedNumeroFicha(itemValue)
               }
-              style={{ height: 40, width: 150 }}
+              style={styles.pickerStyle}
             >
               <Picker.Item label="Número de ficha" value="" />
               <Picker.Item label="2558104" value="2558104" />
             </Picker>
           </View>
-
 
           <View style={styles.inputContainer}>
             <TextInput
@@ -217,7 +208,6 @@ const RegistroAdmin = () => {
             />
           </View>
 
-
           <View style={styles.inputContainer}>
             <TextInput
               placeholder="Contraseña"
@@ -229,7 +219,6 @@ const RegistroAdmin = () => {
               value={formData.password}
             />
           </View>
-
 
           <View style={styles.inputContainer}>
             <Picker
@@ -261,7 +250,6 @@ const RegistroAdmin = () => {
             </Picker>
           </View>
 
-
           <View style={styles.inputContainer}>
             <TextInput
               placeholder="Respuesta de seguridad"
@@ -272,56 +260,47 @@ const RegistroAdmin = () => {
               value={formData.respuesta_seguridad}
             />
           </View>
-
-
         </View>
+
         {/* Botones */}
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Login</Text>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={handleRegister}>
             <Text style={styles.buttonText}>Registrarse</Text>
           </TouchableOpacity>
         </View>
-
-
       </View>
-
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    flex: 1,
-  },
-  scrollContent: {
     flexGrow: 1,
     justifyContent: "center",
-    padding: 0,
   },
 
   container: {
-    flex: 1, 
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
+    backgroundColor: "#F6FCFF",
   },
   title: {
-    fontFamily: "sans-serif",
+    fontFamily: 'Montserrat',
     color: "#088a88",
     fontSize: 24,
     fontWeight: "bold",
     margin: 20,
   },
   formContainer: {
-    flex: 1, 
     width: "100%",
     marginVertical: 20,
   },
   inputContainer: {
     marginBottom: 15,
+    backgroundColor: "white",
+    fontFamily: 'Montserrat',
   },
   input: {
     height: 40,
@@ -329,27 +308,32 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
-    color: "#000", 
+    color: "#088a88",
+    fontFamily: 'Montserrat',
   },
   dateInputContainer: {
     height: 40,
-    borderColor: "#C0C0C0",
+    borderColor: "#088a88",
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
     justifyContent: "center",
     marginBottom: 10,
+    fontFamily: 'Montserrat',
   },
   dateInputLabel: {
-    color: "#6c6e6b",
+    color: "#088a88",
+    fontFamily: 'Montserrat',
   },
   dateInputValue: {
     color: "#C0C0C0",
+    fontFamily: 'Montserrat',
   },
   buttonContainer: {
     flexDirection: "column",
     alignItems: "center",
-    marginVertical: 12,
+    marginVertical: 20,
+    fontFamily: 'Montserrat',
   },
   button: {
     backgroundColor: "#088a88",
@@ -357,13 +341,21 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: "100%",
     alignItems: "center",
-    margin: 5,
-    marginBottom: 25,
   },
   buttonText: {
     color: "white",
     fontWeight: "bold",
   },
+  pickerStyle: {
+    height: 40,
+    width: "auto",
+    borderColor: "#C0C0C0",
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingLeft: 10,
+    color: "#088a88",
+    fontFamily: 'Montserrat',
+  },
 });
 
-export default RegistroAdmin;
+export default RegisterScreen;
