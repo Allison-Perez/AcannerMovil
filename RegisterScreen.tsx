@@ -196,7 +196,7 @@ const RegisterScreen = () => {
               onValueChange={(itemValue) =>
                 setSelectedNumeroFicha(itemValue)
               }
-              style={{ height: 40, width: 150 }}
+              style={styles.pickerStyle}
             >
               <Picker.Item label="Número de ficha" value="" />
               <Picker.Item label="2558104" value="2558104" />
@@ -302,6 +302,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
+    backgroundColor: "#F6FCFF",
   },
   title: {
     fontFamily: "sans-serif",
@@ -316,6 +317,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     marginBottom: 15,
+    backgroundColor: "white",
   },
   input: {
     height: 40,
@@ -323,11 +325,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
-    color: "#000", 
+    color: "#088a88", 
   },
   dateInputContainer: {
     height: 40,
-    borderColor: "#C0C0C0",
+    borderColor: "#088a88",
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
@@ -335,7 +337,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   dateInputLabel: {
-    color: "#6c6e6b",
+    color: "#088a88",
   },
   dateInputValue: {
     color: "#C0C0C0",
@@ -357,6 +359,16 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
+  pickerStyle: {
+    height: 40,
+    width: "auto", // Esto permite que el ancho se ajuste automáticamente al contenido
+    borderColor: "#C0C0C0",
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingLeft: 10,
+    color: "#088a88",
+  },
+
 });
 
 export default RegisterScreen;
