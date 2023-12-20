@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
+import NavAdmin from './NavAdmin';
 
 // Importa el tipo RouteProp para definir el tipo de la ruta
 type EditarAdminRouteProp = RouteProp<Record<string, EditarAdminParams>, 'EditarAdmin'>;
@@ -53,6 +54,7 @@ const EditarAdmin = () => {
 
   return (
     <View style={styles.container}>
+      <NavAdmin />
       <Text style={styles.title}>Editar Información</Text>
       <TextInput
         style={styles.input}

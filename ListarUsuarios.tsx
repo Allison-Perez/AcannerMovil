@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import axios from 'axios';
+import NavAdmin from './NavAdmin';
 
 // Define el tipo para los usuarios
 type Usuario = {
@@ -33,6 +34,7 @@ const ListarUsuarios = () => {
 
   return (
     <View style={styles.container}>
+        <NavAdmin />
       <Text style={styles.title}>Lista de Usuarios</Text>
       <FlatList
         data={usuarios}

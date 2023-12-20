@@ -47,7 +47,7 @@ const PerfilAdmin = () => {
   
 
   const handleCambiarContraseña = () => {
-    navigation.navigate('EditarAdmin' as never); // Asegúrate de tener una pantalla con el nombre 'PasswordAdmin'
+    navigation.navigate('PasswordAdmin' as never); // Asegúrate de tener una pantalla con el nombre 'PasswordAdmin'
   };
   return (
     <View style={styles.container}>
