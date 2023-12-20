@@ -332,9 +332,10 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "column",
     alignItems: "center",
-    marginVertical: 20,
+    marginVertical: 40,
+    marginTop: 10,  // Ajusta este valor según tus necesidades
     fontFamily: 'Montserrat',
-  },
+  },  
   button: {
     backgroundColor: "#088a88",
     padding: 15,
