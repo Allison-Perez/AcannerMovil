@@ -14,6 +14,7 @@ import PasswordAdmin from './PasswordAdmin';
 import EditarAdmin from './EditarAdmin';
 import ListarUsuarios from './ListarUsuarios';
 import ActualizarAdmin from './ActualizarAdmin';
+import NavAdmin from './NavAdmin';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ const App = () => {
         <Stack.Screen name="Index" component={IndexScreen} />
         <Stack.Screen name="Login" component={LoginForm} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="NavAdmin" component={NavAdmin} />
         <Stack.Screen name="IndexAdmin" component={IndexAdmin} />
         <Stack.Screen name="IndexAprendiz" component={IndexAprendiz} />
         <Stack.Screen name="IndexInstructor" component={IndexInstructor} />

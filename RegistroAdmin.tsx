@@ -284,7 +284,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#F6FCFF",
   },
   title: {
     fontFamily: 'Montserrat',
@@ -333,7 +332,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     marginVertical: 40,
-    marginTop: 10,  // Ajusta este valor según tus necesidades
+    marginTop: 10,
     fontFamily: 'Montserrat',
   },  
   button: {
