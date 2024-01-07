@@ -4,6 +4,8 @@ import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import NavAdmin from './NavAdmin';
 import { StackScreenProps } from '@react-navigation/stack';
+import { SearchBar } from 'react-native-elements';
+
 
 type RootStackParamList = {
   ListarUsuarios: undefined;

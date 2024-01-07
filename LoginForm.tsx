@@ -57,7 +57,10 @@ const LoginForm = () => {
     }
   };
   
-  
+  const handleRecuperarP = () => {
+    navigation.navigate('RecuperarP'); // Asegúrate de que coincide con el nombre de la pantalla en tus rutas
+  };
+
   return (
     <View style={styles.container}>
       <Image source={require('./assets/logoVerde.png')} style={styles.logo} />
@@ -77,7 +80,7 @@ const LoginForm = () => {
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
         <Text style={styles.loginButtonText}>Ingresar</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.forgotPassword}>
+      <TouchableOpacity style={styles.forgotPassword} onPress={handleRecuperarP}>
         <Text style={styles.forgotPasswordText}>Restablecer Contraseña</Text>
       </TouchableOpacity>
     </View>

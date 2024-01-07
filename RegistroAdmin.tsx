@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
-    color: "#088a88",
+    color: "#1a1a1a",
     fontFamily: 'Montserrat',
   },
   dateInputContainer: {
@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat',
   },
   dateInputLabel: {
-    color: "#088a88",
+    color: "#1a1a1a",
     fontFamily: 'Montserrat',
   },
   dateInputValue: {
@@ -353,7 +353,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     paddingLeft: 10,
-    color: "#088a88",
+    color: "#1a1a1a",
     fontFamily: 'Montserrat',
   },
 });

@@ -15,6 +15,8 @@ import EditarAdmin from './EditarAdmin';
 import ListarUsuarios from './ListarUsuarios';
 import ActualizarAdmin from './ActualizarAdmin';
 import NavAdmin from './NavAdmin';
+import RecuperarP from './RecuperarP';
+import ValidacionP from './ValidacionP';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +27,8 @@ const App = () => {
         <Stack.Screen name="Index" component={IndexScreen} />
         <Stack.Screen name="Login" component={LoginForm} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="RecuperarP" component={RecuperarP} />
+        <Stack.Screen name="ValidacionP" component={ValidacionP} />
         <Stack.Screen name="NavAdmin" component={NavAdmin} />
         <Stack.Screen name="IndexAdmin" component={IndexAdmin} />
         <Stack.Screen name="IndexAprendiz" component={IndexAprendiz} />
@@ -35,6 +39,8 @@ const App = () => {
         <Stack.Screen name="EditarAdmin" component={EditarAdmin} />
         <Stack.Screen name="ListarUsuarios" component={ListarUsuarios} />
         <Stack.Screen name="ActualizarAdmin" component={ActualizarAdmin} />
+
+
       </Stack.Navigator>
     </NavigationContainer>
   );
