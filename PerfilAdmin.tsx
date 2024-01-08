@@ -36,8 +36,8 @@ const PerfilAdmin = () => {
   };
 
   const handleCambiarContraseña = () => {
-    navigation.navigate('PasswordAdmin' as never); 
-  };
+    navigation.navigate('UpdatePassword' as never, { correo: usuario.correo } as never); 
+  };  
 
   return (
     <View style={styles.container}>

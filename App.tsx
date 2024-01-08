@@ -17,6 +17,7 @@ import ActualizarAdmin from './ActualizarAdmin';
 import NavAdmin from './NavAdmin';
 import RecuperarP from './RecuperarP';
 import ValidacionP from './ValidacionP';
+import UpdatePassword from './UpdatePassword';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,7 @@ const App = () => {
         <Stack.Screen name="EditarAdmin" component={EditarAdmin} />
         <Stack.Screen name="ListarUsuarios" component={ListarUsuarios} />
         <Stack.Screen name="ActualizarAdmin" component={ActualizarAdmin} />
+        <Stack.Screen name="UpdatePassword" component={UpdatePassword} />
 
 
       </Stack.Navigator>
