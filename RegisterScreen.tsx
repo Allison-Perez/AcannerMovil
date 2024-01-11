@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6FCFF",
   },
   title: {
-    fontFamily: 'Monserrat',
+    fontFamily: 'Montserrat',
     color: "#088a88",
     fontSize: 24,
     fontWeight: "bold",
@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginBottom: 15,
     backgroundColor: "white",
-    fontFamily: 'Monserrat',
+    fontFamily: 'Montserrat',
   },
   input: {
     height: 40,
@@ -330,7 +330,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft: 10,
     color: "#088a88",
-    fontFamily: 'Monserrat',
+    fontFamily: 'Montserrat',
   },
   dateInputContainer: {
     height: 40,
@@ -340,21 +340,21 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     justifyContent: "center",
     marginBottom: 10,
-    fontFamily: 'Monserrat',
+    fontFamily: 'Montserrat',
   },
   dateInputLabel: {
     color: "#088a88",
-    fontFamily: 'Monserrat',
+    fontFamily: 'Montserrat',
   },
   dateInputValue: {
     color: "#C0C0C0",
-    fontFamily: 'Monserrat',
+    fontFamily: 'Montserrat',
   },
   buttonContainer: {
     flexDirection: "column",
     alignItems: "center",
     marginVertical: 12,
-    fontFamily: 'Monserrat',
+    fontFamily: 'Montserrat',
   },
   button: {
     backgroundColor: "#088a88",
@@ -377,7 +377,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft: 10,
     color: "#088a88",
-    fontFamily: 'Monserrat',
+    fontFamily: 'Montserrat',
   },
 
 });

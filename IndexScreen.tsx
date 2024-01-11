@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F4FCFF",
-    fontFamily: 'Monserrat',
+    fontFamily: 'Montserrat',
   },
   logo: {
     width: 130,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
     color: '#088a88',
-    fontFamily: 'Monserrat',
+    fontFamily: 'Montserrat',
   },
   paragraph: {
     fontSize: 18,
