@@ -397,6 +397,28 @@ app.get('/api/blog/list', async (req, res) => {
   }
 });
 
+app.get('/api/blog/:id_noticias', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const connection = await mysql.createConnection(dbConfig);
+    const [rows] = await connection.execute('SELECT * FROM noticias WHERE id_noticias = ?', [id]);
+
+    await connection.end();
+
+    if (rows.length > 0) {
+      const blog = rows[0];
+      res.json(blog);
+    } else {
+      res.status(404).json({ error: 'Blog no encontrado' });
+    }
+  } catch (error) {
+    console.error('Error al obtener el blog:', error);
+    res.status(500).json({ error: 'Error al obtener el blog' });
+  }
+});
+
+
 // Subir Archivos
 
 const storage = multer.diskStorage({

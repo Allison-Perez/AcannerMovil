@@ -1,36 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import axios from 'axios';
+import NavInstructor from './NavInstructor';
 import { useNavigation } from '@react-navigation/native';
 
-const BlogInstructor = () => {
+const BlogInstructor: React.FC = () => {
   const [titulo, setTitulo] = useState('');
-  const [comentario, setComentario] = useState('');
+  const [contenido, setComentario] = useState('');
   const [blogs, setBlogs] = useState([]);
   const navigation = useNavigation();
 
-  useEffect(() => {
-    // Función para cargar los blogs
-    const cargarBlogs = async () => {
-      try {
-        const apiUrl = 'http://localhost:3000/api/blog/list';
-        const response = await axios.get(apiUrl);
-        setBlogs(response.data);
-      } catch (error) {
-        console.error('Error al cargar los blogs:', error);
-      }
-    };
+  const cargarBlogs = async () => {
+    try {
+      const apiUrl = 'http://localhost:3000/api/blog/list';
+      const response = await axios.get(apiUrl);
+      setBlogs(response.data);
+    } catch (error) {
+      console.error('Error al cargar los blogs:', error);
+    }
+  };
 
-    // Cargar blogs al montar el componente
+  // Cargar blogs al montar el componente
+  useEffect(() => {
     cargarBlogs();
   }, []);
 
+  // Recargar blogs después de subir uno nuevo
   const handleSubirBlog = async () => {
     try {
       const apiUrl = 'http://localhost:3000/api/blog/create';
-      await axios.post(apiUrl, { titulo, comentario });
+      await axios.post(apiUrl, { titulo, contenido });
 
-      // Recargar blogs después de subir uno nuevo
       setTitulo('');
       setComentario('');
       cargarBlogs();
@@ -39,17 +39,17 @@ const BlogInstructor = () => {
     }
   };
 
+  // Navegar a la pantalla de edición con el ID del blog
   const handleEditarBlog = (id_noticias) => {
-    // Navegar a la pantalla de edición con el ID del blog
     navigation.navigate('EditarBlogInstructor', { id_noticias });
   };
 
+  // Recargar blogs después de eliminar uno
   const handleEliminarBlog = async (id_noticias) => {
     try {
       const apiUrl = `http://localhost:3000/api/blog/delete/${id_noticias}`;
       await axios.delete(apiUrl);
 
-      // Recargar blogs después de eliminar uno
       cargarBlogs();
     } catch (error) {
       console.error('Error al eliminar el blog:', error);
@@ -73,7 +73,8 @@ const BlogInstructor = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Blog del Instructor</Text>
+      <NavInstructor />
+      <Text style={styles.title}>Blog</Text>
       <TextInput
         style={styles.input}
         placeholder="Título del blog"
@@ -82,8 +83,8 @@ const BlogInstructor = () => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Comentario del blog"
-        value={comentario}
+        placeholder="Contenido"
+        value={contenido}
         onChangeText={(text) => setComentario(text)}
         multiline
       />
@@ -138,18 +139,17 @@ const styles = StyleSheet.create({
   blogContainer: {
     backgroundColor: '#f0f0f0',
     padding: 15,
+    borderRadius: 10,
     marginBottom: 15,
-    borderRadius: 8,
   },
   blogTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 8,
+    marginBottom: 10,
   },
   blogContent: {
     fontSize: 16,
-    marginBottom: 12,
-    color: '#555',
+    marginBottom: 10,
   },
   blogButtons: {
     flexDirection: 'row',
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   },
   blogButton: {
     backgroundColor: '#088a88',
-    padding: 8,
+    padding: 10,
     borderRadius: 5,
     width: '48%',
     alignItems: 'center',

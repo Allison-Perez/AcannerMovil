@@ -18,6 +18,8 @@ import NavAdmin from './NavAdmin';
 import RecuperarP from './RecuperarP';
 import ValidacionP from './ValidacionP';
 import UpdatePassword from './UpdatePassword';
+import BlogInstructor from './BlogInstructor'; 
+import EditarBlogInstructor from './EditarBlogInstructor';
 
 const Stack = createStackNavigator();
 
@@ -41,8 +43,8 @@ const App = () => {
         <Stack.Screen name="ListarUsuarios" component={ListarUsuarios} />
         <Stack.Screen name="ActualizarAdmin" component={ActualizarAdmin} />
         <Stack.Screen name="UpdatePassword" component={UpdatePassword} />
-
-
+        <Stack.Screen name="BlogInstructor" component={BlogInstructor} /> 
+        <Stack.Screen name="EditarBlogInstructor" component={EditarBlogInstructor} />
       </Stack.Navigator>
     </NavigationContainer>
   );
