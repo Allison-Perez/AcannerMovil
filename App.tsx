@@ -20,6 +20,7 @@ import ValidacionP from './ValidacionP';
 import UpdatePassword from './UpdatePassword';
 import BlogInstructor from './BlogInstructor'; 
 import EditarBlogInstructor from './EditarBlogInstructor';
+import GuiasInstructor from './GuiasInstructor';
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,7 @@ const App = () => {
         <Stack.Screen name="UpdatePassword" component={UpdatePassword} />
         <Stack.Screen name="BlogInstructor" component={BlogInstructor} /> 
         <Stack.Screen name="EditarBlogInstructor" component={EditarBlogInstructor} />
+        <Stack.Screen name="GuiasInstructor" component={GuiasInstructor} />
       </Stack.Navigator>
     </NavigationContainer>
   );

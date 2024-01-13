@@ -1,5 +1,4 @@
 // NavInstructor.tsx
-
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -9,7 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 type RootStackParamList = {
   IndexInstructor: undefined;
   BlogInstructor: undefined;
-  Guias: undefined;
+  GuiasInstructor: undefined;
   Horarios: undefined;
   Asistencia: undefined;
   PerfilInstructor: undefined;
@@ -41,7 +40,7 @@ const NavInstructor: React.FC = () => {
       <TouchableOpacity onPress={() => navigateTo('BlogInstructor')}>
         <Icon name="book" size={20} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigateTo('Guias')}>
+      <TouchableOpacity onPress={() => navigateTo('GuiasInstructor')}>
         <Icon name="list" size={20} color="white" />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigateTo('Horarios')}>

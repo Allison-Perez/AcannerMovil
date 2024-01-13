@@ -442,6 +442,7 @@ app.post('/api/actividad/create', upload.single('archivo'), async (req, res) => 
 
     const { nombreArchivo, comentario } = req.body;
     const archivoUrl = req.file ? `/uploads/${req.file.filename}` : '';
+    const contenidoPdf = req.file ? 'Contenido del PDF' : '';
 
     if (!req.file) {
       console.error('No se ha proporcionado un archivo para subir.');
@@ -449,9 +450,9 @@ app.post('/api/actividad/create', upload.single('archivo'), async (req, res) => 
       return;
     }
 
-    const insertQuery = 'INSERT INTO guias (nombreArchivo, comentario, archivoUrl) VALUES (?, ?, ?)';
+    const insertQuery = 'INSERT INTO guias (nombreArchivo, comentario, archivoUrl, contenidoPdf) VALUES (?, ?, ?, ?)';
 
-    await connection.execute(insertQuery, [nombreArchivo, comentario, archivoUrl]);
+    await connection.execute(insertQuery, [nombreArchivo, comentario, archivoUrl, contenidoPdf]);
 
     connection.end();
     res.status(200).json({ message: 'Actividad creada exitosamente' });
@@ -460,6 +461,7 @@ app.post('/api/actividad/create', upload.single('archivo'), async (req, res) => 
     res.status(500).json({ error: 'No se pudo crear la actividad' });
   }
 });
+
 
 // Ruta para actualizar una actividad por su ID
 app.put('/api/actividad/update/:id_guia', upload.single('archivo'), async (req, res) => {
