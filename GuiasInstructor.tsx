@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, TextInput, ScrollView, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import * as DocumentPicker from 'expo-document-picker';
-import { PDFView } from 'react-native-pdf';
+import { Pdf } from 'react-native-pdf';
 
 const GuiasInstructor: React.FC = () => {
   const navigation = useNavigation();
@@ -48,39 +48,46 @@ const GuiasInstructor: React.FC = () => {
   };
 
   const handleGuardar = async () => {
-    if (!archivo) {
-      Alert.alert('Alerta', 'Por favor, selecciona un archivo.');
-      return;
-    }
-
     try {
+      console.log('Antes de fetch');
+  
+      if (!archivo) {
+        Alert.alert('Alerta', 'Por favor, selecciona un archivo.');
+        return;
+      }
+  
       const formData = new FormData();
-      formData.append('archivo', archivo);
-
+      const archivoBlob = new Blob([archivo], { type: 'application/pdf' });
+  
+      formData.append('archivo', archivoBlob, 'nombre-archivo.pdf');
       formData.append('nombreArchivo', titulo);
       formData.append('comentario', contenido);
-
+  
+      console.log('FormData:', formData);
+  
       const response = await fetch('http://localhost:3000/api/actividad/create', {
         method: 'POST',
         body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
-
-      const saved = await response.json();
-
-      if (saved) {
-        fetchData();
-        Alert.alert('Éxito', 'Guía guardada exitosamente');
-      } else {
-        Alert.alert('Error', 'Fallo al guardar la guía');
-      }
+  
+      console.log('Respuesta del servidor:', response); // Agrega esta línea
+  
+      // Simplemente imprimir el resultado de la respuesta, sin verificar el estado
+      console.log(await response.text());
+  
+      console.log('Después de fetch');
     } catch (error) {
-      console.error('Error al guardar la guía:', error);
+      console.error('Error en handleGuardar:', error);
     }
-
+  
     setTitulo('');
     setArchivo(null);
     setContenido('');
   };
+  
 
   const handleEditar = (guia: any) => {
     navigation.navigate('EditarGuiaInstructor', { guia });

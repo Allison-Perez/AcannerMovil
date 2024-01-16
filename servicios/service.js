@@ -437,6 +437,7 @@ const upload = multer({ storage });
 
 // Ruta para crear una actividad
 app.post('/api/actividad/create', upload.single('archivo'), async (req, res) => {
+  console.log('Se ha llamado a /api/actividad/create');
   try {
     const connection = await mysql.createConnection(dbConfig);
 
@@ -457,8 +458,8 @@ app.post('/api/actividad/create', upload.single('archivo'), async (req, res) => 
     connection.end();
     res.status(200).json({ message: 'Actividad creada exitosamente' });
   } catch (error) {
-    console.error('Error al insertar la actividad en la base de datos:', error);
-    res.status(500).json({ error: 'No se pudo crear la actividad' });
+    console.error('Error en /api/actividad/create:', error);
+    res.status(500).json({ error: 'Error en /api/actividad/create' });
   }
 });
 
