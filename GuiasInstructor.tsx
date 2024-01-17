@@ -22,7 +22,6 @@ const GuiasInstructor: React.FC = () => {
   };
 
   const handleOpenPDF = (archivoUrl: string) => {
-    // Navegar a la pantalla que muestra el PDF
     navigation.navigate('VistaPDF', { archivoUrl });
   };
 
@@ -50,21 +49,21 @@ const GuiasInstructor: React.FC = () => {
   const handleGuardar = async () => {
     try {
       console.log('Antes de fetch');
-  
+    
       if (!archivo) {
         Alert.alert('Alerta', 'Por favor, selecciona un archivo.');
         return;
       }
-  
+    
       const formData = new FormData();
       const archivoBlob = new Blob([archivo], { type: 'application/pdf' });
-  
+    
       formData.append('archivo', archivoBlob, 'nombre-archivo.pdf');
       formData.append('nombreArchivo', titulo);
       formData.append('comentario', contenido);
-  
+    
       console.log('FormData:', formData);
-  
+    
       const response = await fetch('http://localhost:3000/api/actividad/create', {
         method: 'POST',
         body: formData,
@@ -72,27 +71,27 @@ const GuiasInstructor: React.FC = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-  
-      console.log('Respuesta del servidor:', response); // Agrega esta línea
-  
-      // Simplemente imprimir el resultado de la respuesta, sin verificar el estado
-      console.log(await response.text());
-  
-      console.log('Después de fetch');
+    
+      console.log('Código de estado de la respuesta:', response.status);
+      console.log('Cuerpo de la respuesta:', await response.text());
+    
+      if (response.ok) {
+        console.log('Respuesta exitosa:', await response.text());
+      } else {
+        console.error('Error en la respuesta:', await response.text());
+      }
     } catch (error) {
       console.error('Error en handleGuardar:', error);
     }
-  
+    
     setTitulo('');
     setArchivo(null);
     setContenido('');
   };
-  
 
   const handleEditar = (guia: any) => {
     navigation.navigate('EditarGuiaInstructor', { guia });
   };
-  
 
   const pickDocument = async () => {
     try {
@@ -119,7 +118,7 @@ const GuiasInstructor: React.FC = () => {
           onChangeText={setTitulo}
         />
         <Button title="Seleccionar Archivo" onPress={pickDocument} />
-        {archivo && <Text>{archivo.name}</Text>}
+        {archivo && <Text>{archivo.name || archivo.uri.split('/').pop()}</Text>}
         <TextInput
           style={styles.input}
           placeholder="Contenido"
